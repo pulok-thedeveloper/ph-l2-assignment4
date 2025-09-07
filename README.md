@@ -1,69 +1,107 @@
-# React + TypeScript + Vite
+# Library Management System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend application** for the Library Management System, built with **React**, **TypeScript**, **Redux Toolkit**, and **Tailwind CSS**. The application provides a user-friendly interface to view, add, edit, delete, and borrow books. It also displays a borrow summary with sorting functionality.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Installation](#installation)  
+- [Running the Project](#running-the-project)  
+- [Environment Variables](#environment-variables)  
+- [API Integration](#api-integration)  
+- [Components](#components)  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Responsive UI using **Tailwind CSS** and **ShadCN components**  
+- Browse books with **genre tabs**, **sorting**, and **backend-driven pagination**  
+- **Add, edit, and delete books** using modals  
+- **Borrow books** with quantity and due date  
+- **View borrow summary** in a sortable table  
+- Loading skeletons and error handling for all API calls  
+- Dark mode toggle support  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Tech Stack
+
+- **React 18** with **Vite**  
+- **TypeScript** for type safety  
+- **Redux Toolkit & RTK Query** for state management and API handling  
+- **Tailwind CSS** for styling  
+- **ShadCN/UI** component library  
+- **React Hook Form** for handling forms  
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/library-frontend.git
+cd library-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+Copy code
+npm install
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# or
+yarn install
 ```
+## Running the Project
+```bash
+Copy code
+npm run dev
+# or
+yarn dev
+The frontend will run on http://localhost:5173.
+```
+
+## Environment Variables
+Create a .env file in the root directory:
+
+env
+Copy code
+VITE_API_BASE_URL=https://your-backend-api.com/api
+
+
+## API Integration
+The frontend uses RTK Query for API requests:
+
+Books API
+
+GET /books – Fetch books (supports filters, sorting, pagination)
+
+POST /books – Add a book
+
+PUT /books/:id – Edit a book
+
+DELETE /books/:id – Delete a book
+
+Borrow API
+
+POST /borrow – Borrow a book
+
+GET /borrow – Fetch borrow summary
+
+## Components
+BookCard – Displays book information with actions: Edit, Delete, Borrow, Details
+
+AddBookModal – Form to add a new book
+
+EditBookModal – Form to edit book details
+
+DeleteBookModal – Confirm deletion of a book
+
+BorrowBookModal – Borrow a book with quantity and due date
+
+DetailsBookModal – Shows book details in a modal
